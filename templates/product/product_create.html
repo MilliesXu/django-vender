@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <main>
+        <div class="d-flex justify-content-center">
+            <form class="w-75 center" action="" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Create Product</legend>
+                    <div class="form-group has-danger">
+                        <label for="" class="form-label mt-4">Product Name</label>
+                        {% render_field form.name class+="form-control" %}
+                        {% if form.name.errors %}
+                            {% for error in form.name.errors %}
+                                <div class="mt-2 text-danger">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="form-label mt-4">Description</label>
+                        {% render_field form.description type="text" class+="form-control" rows="20" %}
+                        {% if form.description.errors %}
+                            {% for error in form.description.errors %}
+                                <div class="mt-2 text-danger">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </main>
+{% endblock content %}

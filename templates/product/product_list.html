@@ -3,12 +3,12 @@
 {% block content %}
     <main>
         <div class="text-center">
-            <h3>Materials</h3>
+            <h3>Products</h3>
         </div>
 
         {% if user.is_authenticated %}
             <div class="me-auto">
-                <a class="btn btn-info" href="{% url 'materials-create' %}">Create Material</a>
+                <a class="btn btn-info" href="{% url 'products-create' %}">Create Product</a>
             </div>
         {% endif %}
 
@@ -19,37 +19,35 @@
                     <tr>
                         <th class="text-center" scope="col">No</th>
                         <th class="text-center" scope="col">Name</th>
-                        <th class="text-center" scope="col">Uom</th>
-                        <th class="text-center" scope="col">Unit Price</th>
+                        <th class="text-center" scope="col">Description</th>
                         <th class="text-center" scope="col" colspan="3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for material in object_list  %}
-                        <tr>
+                    {% for product in object_list  %}
+                        <tr>>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td>{{ material.name }}</td>
-                            <td>{{ material.uom }}</td>
-                            <td><span class="text-left">Rp.</span><span class="text-right">{{ material.unit_price }}</span></td>
-                            <td class="text-center"><a class="btn btn-info" href="{% url 'materials-detail' material.id %}">Detail</a></td>
-                            <td class="text-center"><a class="btn btn-warning" href="{% url 'materials-update' material.id %}">Update</a></td>
-                            <td class="text-center"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMaterial-{{ material.id }}">Delete</button></td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.description }}</td>
+                            <td class="text-center"><a class="btn btn-info" href="{% url 'products-detail' product.id %}">Detail</a></td>
+                            <td class="text-center"><a class="btn btn-warning" href="{% url 'products-update' product.id %}">Update</a></td>
+                            <td class="text-center"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProduct-{{ product.id }}">Delete</button></td>
                         </tr>
 
-                        <div class="modal fade" id="deleteMaterial-{{ material.id }}" role="dialog" aria-hidden="true">
+                        <div class="modal fade" id="deleteProduct-{{ product.id }}" role="dialog" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title">Delete Material</h5>
+                                        <h5 class="modal-title">Delete Product</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true"></span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Do you want to delete this {{ material.name }}?</p>
+                                        <p>Do you want to delete this {{ product.name }}?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{% url 'materials-delete' material.id %}" method="post">
+                                        <form action="{% url 'products-delete' product.id %}" method="post">
                                             {% csrf_token %}
                 
                                             <button type="submit" class="btn btn-primary">Delete</button>

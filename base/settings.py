@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
 
     'authentification.apps.AuthentificationConfig',
-    'material.apps.MaterialConfig'
+    'material.apps.MaterialConfig',
+    'product.apps.ProductConfig'
 ]
 
 MIDDLEWARE = [
